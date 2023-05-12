@@ -1,0 +1,35 @@
+.horizontal-list {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.horizontal-item {
+    padding: 20px;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.horizontal-item:hover {
+    background-color: #2f2f2f;
+}
+
+.horizontal-item:hover img {
+    filter: brightness(93%);
+}
+
+.horizontal-item img {
+    width: 200px;
+    height: 300px;
+    object-position: center;
+    border-radius: 8px;
+    z-index: 0;
+}
+
+.loader {
+    display: none;
+}

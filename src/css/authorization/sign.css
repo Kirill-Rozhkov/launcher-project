@@ -1,0 +1,44 @@
+.signContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.signup {
+    color: rgb(8, 107, 255);
+    background-color: unset;
+    border: none;
+    cursor: pointer;
+}
+
+.signBody {
+    max-width: 100%;
+    background-color: #363636;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+form div {
+    padding-top: 10px;
+}
+
+form label {
+    font-size: 20px;
+}
+
+form button {
+    border: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: rgb(216, 185, 30);
+    color: rgb(16, 16, 16);
+}
+form button:hover {
+    background-color: rgb(196, 168, 27);
+    cursor: pointer;
+}
