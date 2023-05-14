@@ -2,11 +2,14 @@ import React from "react"
 import PropTypes from "prop-types"
 
 import LayoutWithHeader from "../components/LayoutWithHeader"
+import GameList from "../components/GameList"
 
 const Libary = ({ games }) => {
+    const gamesList = games.filter((game) => game.isSold === true)
     return (
         <LayoutWithHeader games={games}>
             <h1>Libary</h1>
+            <GameList games={gamesList} />
         </LayoutWithHeader>
     )
 }

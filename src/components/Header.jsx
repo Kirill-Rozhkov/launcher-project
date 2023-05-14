@@ -8,25 +8,25 @@ import "../css/header.css"
 
 const Header = ({ games }) => {
     return (
-        <div className="header">
-            <div className="logoContainer">
-                <div className="logo">
+        <div className="headerContainer">
+            <div className="header">
+                <div className="logoContainer">
                     <Link to={"/"}>
                         <h1>Header 1</h1>
                     </Link>
                 </div>
-            </div>
-            <div className="searchContainer">
-                <h1>Game Launcher</h1>
-                <Search games={games} />
-            </div>
-            <div className="authorization">
-                <Link to={"/login"}>
-                    <h2 className="loginText">Log in</h2>
-                </Link>
-                <Link to={"/signup"}>
-                    <h2 className="signupText">Sign up</h2>
-                </Link>
+                <div className="searchContainer">
+                    <h1>Game Launcher</h1>
+                    <Search games={games} />
+                </div>
+                <div className="authorization">
+                    <Link to={"/login"}>
+                        <h2 className="loginText">Log in</h2>
+                    </Link>
+                    <Link to={"/signup"}>
+                        <h2 className="signupText">Sign up</h2>
+                    </Link>
+                </div>
             </div>
         </div>
     )

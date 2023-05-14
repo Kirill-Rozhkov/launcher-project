@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useHistory, useLocation } from "react-router-dom"
 
 import LayoutWithoutHeader from "../components/LayoutWithoutHeader"
 
@@ -8,12 +8,16 @@ import CancelButton from "../components/CancelButton"
 
 import "../css/gamePage/buyPage.css"
 
-const BuyPage = ({ games }) => {
+const BuyPage = ({ games, handleBuy }) => {
     const [paymentMethods, setPaymentMethods] = useState()
     const location = useLocation()
     const game = location.state.gameProp
     console.log(game)
     const gameDiscount = game.discount / 100
+    const history = useHistory()
+    const handleChangeHistory = () => {
+        history.push("/")
+    }
 
     useEffect(() => {
         for (let i = 0; i < localStorage.length; i++) {
@@ -28,9 +32,6 @@ const BuyPage = ({ games }) => {
         }
     }, [])
 
-    const buyGame = () => {
-        // games.find((game) => )
-    }
     return (
         <div className="buyPageContainer">
             <LayoutWithoutHeader>
@@ -100,7 +101,7 @@ const BuyPage = ({ games }) => {
                     <button
                         className="firstNavButton"
                         style={{ marginTop: "10%", width: "80%" }}
-                        onClick={() => buyGame()}
+                        onClick={(() => handleBuy(game), handleChangeHistory)}
                     >
                         <h1>Pay for the purchase</h1>
                     </button>
@@ -110,7 +111,8 @@ const BuyPage = ({ games }) => {
     )
 }
 BuyPage.propTypes = {
-    games: PropTypes.array
+    games: PropTypes.array,
+    handleBuy: PropTypes.func
 }
 
 export default BuyPage

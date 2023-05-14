@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import LayoutWithHeader from "../components/LayoutWithHeader"
 
-const Main = ({ games }) => {
+const Main = ({ games, handleBuy }) => {
     return (
         <LayoutWithHeader games={games}>
             <h1>Main</h1>
@@ -11,7 +11,8 @@ const Main = ({ games }) => {
     )
 }
 Main.propTypes = {
-    games: PropTypes.array
+    games: PropTypes.array,
+    handleBuy: PropTypes.func
 }
 
 export default Main

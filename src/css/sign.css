@@ -9,10 +9,9 @@
     margin-top: 100px;
 }
 
-.signup {
+.signButton {
     color: rgb(8, 107, 255);
     background-color: unset;
-    border: none;
     cursor: pointer;
 }
 

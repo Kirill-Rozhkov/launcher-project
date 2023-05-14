@@ -4,8 +4,6 @@ import { Route, Switch } from "react-router-dom"
 import API from "./api"
 
 import LogIn from "./layouts/Login"
-import SignUp from "./layouts/Signup"
-import Logout from "./layouts/Logout"
 
 import FiltredGamesPage from "./layouts/FiltredGamesPage"
 import GamePage from "./layouts/GamePage"
@@ -21,6 +19,23 @@ import "./css/App.css"
 
 function App() {
     const [games, setGames] = useState([])
+
+    const handleBuy = (game) => {
+        const sold = game.isSold === false && true
+        setGames((gamesList) =>
+            gamesList.map((g) => {
+                if (g.id === game.id) {
+                    return {
+                        ...g,
+                        isSold: sold
+                    }
+                }
+                return g
+            })
+        )
+        console.log(games)
+    }
+
     useEffect(() => {
         API.games.fetchAll().then((data) => {
             setGames(data)
@@ -33,7 +48,7 @@ function App() {
             <Route path={"/addCard"} render={() => <PaymentMethod />} />
             <Route
                 path={"/shop/:gameTitle/buyPage"}
-                render={() => <BuyPage games={games} />}
+                render={() => <BuyPage games={games} handleBuy={handleBuy} />}
             />
             <Route
                 path={"/shop/filtredGames"}
@@ -44,9 +59,7 @@ function App() {
                 render={() => <GamePage games={games} />}
             />
             <Route path={"/shop"} render={() => <Shop games={games} />} />
-            <Route path={"/login"} render={() => <LogIn />} />
-            <Route path={"/signup"} render={() => <SignUp />} />
-            <Route path={"/logout"} render={() => <Logout />} />
+            <Route path={"/login/:type?"} render={() => <LogIn />} />
             <Route path={"*"} render={() => <NotFound />} />
         </Switch>
     )
