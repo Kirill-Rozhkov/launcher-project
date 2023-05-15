@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
-
-import { validator } from "../utils/validator"
+import * as yup from "yup"
 
 import TextField from "../components/TextField"
 
@@ -15,46 +14,36 @@ const LoginForm = () => {
             [target.name]: target.value
         }))
     }
-    const validatorConfig = {
-        email: {
-            isEmail: {
-                message: "Email is incorrect"
-            },
-            notLatin: {
-                message: "Email must have only latin leeters"
-            },
-            isRequired: {
-                message: "Email is required"
-            }
-        },
-        password: {
-            isShort: {
-                message: "Password must be at least 8 symbols"
-            },
-            isCapital: {
-                message: "Password must contain at least one capital letter"
-            },
-            isNumber: {
-                message: "Password must contain at least one number"
-            },
-            isSpecialSymbol: {
-                message: "Password must contain at least one special symbol"
-            },
-            isNotEnglish: {
-                message: "Password must have only English leeters"
-            },
-            isRequired: {
-                message: "Password is required"
-            }
-        }
-    }
+
+    const schemeValidate = yup.object({
+        password: yup
+            .string()
+            .required("Password is required")
+            .matches(
+                /(?=.*[A-Z])/,
+                "Password must contain at least one capital letter"
+            )
+            .matches(/(?=.*(\d))/, "Password must contain at least one number")
+            .matches(
+                /(?=.*[!@#$%^&*()_+=[\]{};':"\\|,.<>/?])/,
+                "Password must contain at least one special symbol"
+            )
+            .min(8, "Password must be at least 8 symbols"),
+        email: yup
+            .string()
+            .required("Email is required")
+            .email("Email is incorrect")
+    })
+
     useEffect(() => {
-        setErrors(validator(data, validatorConfig))
+        validate()
     }, [data])
 
     const validate = () => {
-        const errors = validator(data, validatorConfig)
-        setErrors(errors)
+        schemeValidate
+            .validate(data)
+            .then(() => setErrors({}))
+            .catch((err) => setErrors({ [err.path]: err.message }))
         return Object.keys(errors).length === 0
     }
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Route, Switch } from "react-router-dom"
+import { Route, Switch, useHistory } from "react-router-dom"
 
 import API from "./api"
 
@@ -20,7 +20,8 @@ import "./css/App.css"
 function App() {
     const [games, setGames] = useState([])
 
-    const handleBuy = (game) => {
+    const handleBuy = (game, history) => {
+        history.push("/")
         const sold = game.isSold === false && true
         setGames((gamesList) =>
             gamesList.map((g) => {

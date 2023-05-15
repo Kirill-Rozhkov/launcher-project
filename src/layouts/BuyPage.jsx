@@ -12,12 +12,8 @@ const BuyPage = ({ games, handleBuy }) => {
     const [paymentMethods, setPaymentMethods] = useState()
     const location = useLocation()
     const game = location.state.gameProp
-    console.log(game)
     const gameDiscount = game.discount / 100
     const history = useHistory()
-    const handleChangeHistory = () => {
-        history.push("/")
-    }
 
     useEffect(() => {
         for (let i = 0; i < localStorage.length; i++) {
@@ -101,7 +97,7 @@ const BuyPage = ({ games, handleBuy }) => {
                     <button
                         className="firstNavButton"
                         style={{ marginTop: "10%", width: "80%" }}
-                        onClick={(() => handleBuy(game), handleChangeHistory)}
+                        onClick={() => handleBuy(game, history)}
                     >
                         <h1>Pay for the purchase</h1>
                     </button>
