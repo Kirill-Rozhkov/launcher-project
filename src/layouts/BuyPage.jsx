@@ -8,7 +8,7 @@ import CancelButton from "../components/CancelButton"
 
 import "../css/gamePage/buyPage.css"
 
-const BuyPage = ({ games, handleBuy }) => {
+const BuyPage = ({ handleBuy }) => {
     const [paymentMethods, setPaymentMethods] = useState()
     const location = useLocation()
     const game = location.state.gameProp

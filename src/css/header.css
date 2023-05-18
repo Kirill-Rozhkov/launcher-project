@@ -33,6 +33,7 @@
 
 .searchContainer {
     width: 30%;
+    margin-left: 12%;
     flex-direction: column;
 }
 .searchContainer h1 {

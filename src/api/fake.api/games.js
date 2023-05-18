@@ -530,19 +530,38 @@ const games = [
     }
 ]
 
+if (!localStorage.getItem("games")) {
+    localStorage.setItem("games", JSON.stringify(games))
+}
+
 const fetchAll = () =>
     new Promise((resolve) => {
         window.setTimeout(function () {
-            resolve(games)
+            resolve(JSON.parse(localStorage.getItem("games")))
         }, 2000)
     })
 const getByTitle = (title) =>
     new Promise((resolve) => {
         window.setTimeout(function () {
+            const games = JSON.parse(localStorage.getItem("games"))
             resolve(games.find((game) => game.title === title))
         }, 1000)
     })
+const update = (id, data) =>
+    new Promise((resolve) => {
+        console.log(data)
+        console.log(id)
+        const games = JSON.parse(localStorage.getItem("games"))
+        const gameIndex = games.findIndex((g) => g.id === id)
+        console.log({ ...games[gameIndex], ...data })
+        games[gameIndex] = { ...data, ...games[gameIndex] }
+        console.log(games[gameIndex])
+        localStorage.setItem("games", JSON.stringify(games))
+        // console.log(games)
+        resolve(games[gameIndex])
+    })
 export default {
     fetchAll,
-    getByTitle
+    getByTitle,
+    update
 }

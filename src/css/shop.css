@@ -1,5 +1,6 @@
 .horizontal-list {
     margin-top: 10px;
+    margin-bottom: 40px;
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
@@ -32,4 +33,17 @@
 
 .loader {
     display: none;
+}
+
+.paginatorButton {
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: underline;
+    text-align: center;
+    margin-bottom: 2.5%;
+    margin-right: 11%;
+}
+
+.noGames {
+    margin-top: 2%;
 }

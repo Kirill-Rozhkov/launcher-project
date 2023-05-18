@@ -4,18 +4,27 @@ import PropTypes from "prop-types"
 import LayoutWithHeader from "../components/LayoutWithHeader"
 import GameList from "../components/GameList"
 
-const Libary = ({ games }) => {
+const Libary = ({ games, handlePaginatePage, pageSize }) => {
     const gamesList = games.filter((game) => game.isSold === true)
-    console.log(gamesList)
     return (
         <LayoutWithHeader games={games}>
-            <h1>Libary</h1>
-            <GameList games={gamesList} />
+            {games ? (
+                <GameList
+                    games={gamesList}
+                    allGames={games}
+                    handlePaginatePage={handlePaginatePage}
+                    pageSize={pageSize}
+                />
+            ) : (
+                <h1>Loading...</h1>
+            )}
         </LayoutWithHeader>
     )
 }
 Libary.propTypes = {
-    games: PropTypes.array
+    games: PropTypes.array,
+    handlePaginatePage: PropTypes.func,
+    pageSize: PropTypes.number
 }
 
 export default Libary
