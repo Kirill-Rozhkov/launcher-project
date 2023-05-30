@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
 import * as yup from "yup"
 
 import TextField from "../components/TextField"
 
 import "../css/sign.css"
 
-const LoginForm = () => {
+const LoginForm = ({ changeAuth }) => {
     const [data, setData] = useState({ email: "", password: "" })
     const [errors, setErrors] = useState({})
     const handleChange = ({ target }) => {
@@ -80,6 +81,9 @@ const LoginForm = () => {
             </div>
         </form>
     )
+}
+LoginForm.propTypes = {
+    changeAuth: PropTypes.func
 }
 
 export default LoginForm

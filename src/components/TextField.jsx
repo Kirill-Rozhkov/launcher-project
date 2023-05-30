@@ -4,7 +4,7 @@ import SearchFiled from "./SearchField"
 
 const TextField = ({ name, label, type, text, onChange, error }) => {
     const [inputType, setInputType] = useState(type)
-    console.log(inputType)
+    // console.log(inputType)
     const showText = () => {
         if (inputType === "password") {
             setInputType("text")

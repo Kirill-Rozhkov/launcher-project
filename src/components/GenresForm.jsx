@@ -9,7 +9,7 @@ const GenresForm = ({ games, genre, pageName }) => {
             game.characteristics.genres[0].toLowerCase().trim() ===
             genre.toLowerCase().trim()
     )
-    console.log(filtredGames)
+    // console.log(filtredGames)
     return (
         <div>
             <h3>{genre}</h3>

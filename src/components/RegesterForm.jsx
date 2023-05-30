@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
 import * as yup from "yup"
 
 import TextField from "../components/TextField"
 
 import "../css/sign.css"
-import CheckboxField from "./CheckboxField"
+// import CheckboxField from "./CheckboxField"
+import { useHistory } from "react-router-dom"
 
-const RegisterForm = () => {
-    const [data, setData] = useState({ email: "", password: "" })
+const RegisterForm = ({ changeAuth, addUsers, usersLength }) => {
+    const [data, setData] = useState({ name: "", email: "", password: "" })
     const [errors, setErrors] = useState({})
     const handleChange = ({ target }) => {
         setData((prevState) => ({
@@ -15,7 +17,7 @@ const RegisterForm = () => {
             [target.name]: target.value
         }))
     }
-
+    const history = useHistory()
     const schemeValidate = yup.object({
         password: yup
             .string()
@@ -33,7 +35,8 @@ const RegisterForm = () => {
         email: yup
             .string()
             .required("Email is required")
-            .email("Email is incorrect")
+            .email("Email is incorrect"),
+        name: yup.string().required("Name is required")
     })
 
     useEffect(() => {
@@ -53,12 +56,28 @@ const RegisterForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const isValid = validate()
-        if (!isValid) return
-        console.log(data)
+        if (!isValid) {
+            return console.log(data)
+        } else {
+            changeAuth()
+            addUsers({
+                id: usersLength + 1,
+                ...data,
+                games: []
+            })
+            history.push("/")
+        }
     }
 
     return (
         <form onSubmit={handleSubmit}>
+            <TextField
+                name={"name"}
+                label={"Name"}
+                onChange={handleChange}
+                text={data.name}
+                error={errors.name}
+            />
             <TextField
                 name={"email"}
                 label={"Email"}
@@ -82,6 +101,11 @@ const RegisterForm = () => {
             </div>
         </form>
     )
+}
+RegisterForm.propTypes = {
+    changeAuth: PropTypes.func,
+    addUsers: PropTypes.func,
+    usersLength: PropTypes.number
 }
 
 export default RegisterForm

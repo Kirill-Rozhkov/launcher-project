@@ -5,7 +5,8 @@ const SearchFiled = ({ label, onChange, value, name }) => {
     const isLogin = () => {
         if (
             label.toLowerCase() !== "password" &&
-            label.toLowerCase() !== "email"
+            label.toLowerCase() !== "email" &&
+            label.toLowerCase() !== "name"
         ) {
             return <h1>{label}</h1>
         } else {

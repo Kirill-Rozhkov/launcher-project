@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
 
 import "../css/sign.css"
 import CancelButton from "../components/CancelButton"
@@ -7,7 +8,7 @@ import LoginForm from "../components/LoginForm"
 import { useParams } from "react-router-dom"
 import RegisterForm from "../components/RegesterForm"
 
-const LogIn = () => {
+const LogIn = ({ changeAuth, addUsers, usersLength }) => {
     const { type } = useParams()
     const [formType, setFormType] = useState(
         type === "register" ? type : "login"
@@ -26,7 +27,11 @@ const LogIn = () => {
                     <>
                         <h1>Register</h1>
                         <div className="signBody">
-                            <RegisterForm />
+                            <RegisterForm
+                                changeAuth={changeAuth}
+                                addUsers={addUsers}
+                                usersLength={usersLength}
+                            />
                             <h4>
                                 Already have accaunt?{" "}
                                 <a
@@ -43,7 +48,7 @@ const LogIn = () => {
                     <>
                         <h1>Log in</h1>
                         <div className="signBody">
-                            <LoginForm />
+                            <LoginForm changeAuth={changeAuth} />
                             <h4>
                                 {`Don't have an accaunt?`}{" "}
                                 <a
@@ -61,6 +66,11 @@ const LogIn = () => {
             </div>
         </LayoutWithoutHeader>
     )
+}
+LogIn.propTypes = {
+    changeAuth: PropTypes.func.isRequired,
+    addUsers: PropTypes.func.isRequired,
+    usersLength: PropTypes.number
 }
 
 export default LogIn

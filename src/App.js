@@ -20,6 +20,8 @@ import { paginator } from "./utils/paginator"
 
 function App() {
     const [games, setGames] = useState([])
+    const [users, setUsers] = useState([])
+    const [isAuth, setIsAuth] = useState(false)
     const [counter, setCounter] = useState(1)
     const pageSize = 7
     const [gamesList, setGamesList] = useState([])
@@ -42,12 +44,24 @@ function App() {
             })
         )
     }
+    // setUsers((prev) => console.log(prev))
+    const changeAuth = () => {
+        setIsAuth((prev) => !prev)
+    }
+    const addUsers = (data) => {
+        setUsers((prev) => console.log(prev.push(prev)))
+    }
 
     useEffect(() => {
         API.games.fetchAll().then((data) => {
             setGames(data)
         })
+        API.users.fetchAll().then((data) => {
+            setUsers(data)
+        })
     }, [])
+    console.log(users)
+
     useEffect(() => {
         setGamesList(paginator(games, counter, pageSize))
     }, [games])
@@ -97,7 +111,16 @@ function App() {
                     />
                 )}
             />
-            <Route path={"/login/:type?"} render={() => <LogIn />} />
+            <Route
+                path={"/login/:type?"}
+                render={() => (
+                    <LogIn
+                        changeAuth={changeAuth}
+                        addUsers={addUsers}
+                        usersLength={users.length}
+                    />
+                )}
+            />
             <Route path={"*"} render={() => <NotFound />} />
         </Switch>
     )
