@@ -1,34 +1,30 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 
 import Game from "./Game"
-import { paginator } from "../utils/paginator"
+import GamesMap from "./GamesMap"
 
-const GameList = ({ games, handlePaginatePage, allGames, pageSize }) => {
+const GameList = ({ games, handlePaginatePage, allGames, pageName }) => {
     return (
         <>
             {games.length > 0 ? (
                 <div>
                     <div className="horizontal-list">
-                        {games.map((game) => (
-                            <div key={game.id}>
-                                <Game game={game} />
-                            </div>
-                        ))}
+                        <GamesMap games={games} pageName={pageName} />
                     </div>
-                    {/* games.length > pageSize && */}
-                    {games.length !== allGames.length && (
-                        <p
-                            role="button"
-                            onClick={handlePaginatePage}
-                            className="paginatorButton"
-                        >
-                            Show more
-                        </p>
-                    )}
+                    {pageName !== "libary" &&
+                        games.length !== allGames.length && (
+                            <p
+                                role="button"
+                                onClick={handlePaginatePage}
+                                className="paginatorButton"
+                            >
+                                Show more
+                            </p>
+                        )}
                 </div>
             ) : (
-                <h1 className="noGames">Here is no games</h1>
+                <h1 className="noGames">The games are not found</h1>
             )}
         </>
     )
@@ -38,7 +34,7 @@ GameList.propTypes = {
     games: PropTypes.array,
     allGames: PropTypes.array,
     handlePaginatePage: PropTypes.func,
-    pageSize: PropTypes.number
+    pageName: PropTypes.string
 }
 
 export default GameList

@@ -11,11 +11,11 @@ const RightPageSide = ({ screenshots, video }) => {
         switch (direction) {
             case "right":
                 counter !== screenshots.length && setCounter(counter + 1)
-                setBottomValue(101 * counter)
+                setBottomValue(100.7 * counter)
                 break
             case "left":
                 counter !== 0 && setCounter(counter - 1)
-                setBottomValue(bottomValue - 101)
+                setBottomValue(bottomValue - 100.7)
                 break
         }
     }

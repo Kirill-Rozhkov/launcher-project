@@ -1,0 +1,23 @@
+.libaryContainer {
+    display: flex;
+}
+
+.gamesListLibary {
+    width: 75%;
+}
+
+.searchLibary {
+    display: flex;
+    width: 25%;
+    margin-top: 100px;
+    justify-content: center;
+}
+
+.searchInput {
+    display: flex;
+    align-items: center;
+}
+
+.searchInput input {
+    width: 200px;
+}

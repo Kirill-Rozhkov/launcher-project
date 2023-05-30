@@ -16,8 +16,7 @@ const Header = ({ games }) => {
                     </Link>
                 </div>
                 <div className="searchContainer">
-                    <h1>Game Launcher</h1>
-                    <Search games={games} />
+                    <Search games={games} label={"Game Launcher"} />
                 </div>
                 <div className="authorization">
                     <Link to={"/login"}>

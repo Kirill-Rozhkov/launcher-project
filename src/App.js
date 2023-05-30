@@ -41,13 +41,7 @@ function App() {
                 return g
             })
         )
-        // window.setTimeout(function () {
-        API.games.update(game.id, games).then((data) => {
-            console.log(data)
-        })
-        // }, 1000)
     }
-    // console.log(JSON.parse(localStorage.getItem("games")))
 
     useEffect(() => {
         API.games.fetchAll().then((data) => {
@@ -82,7 +76,12 @@ function App() {
             />
             <Route
                 path={"/shop/filtredGames"}
-                render={() => <FiltredGamesPage />}
+                render={() => (
+                    <FiltredGamesPage
+                        allGames={games}
+                        handlePaginatePage={handlePaginatePage}
+                    />
+                )}
             />
             <Route
                 path={"/shop/:gameTitle"}

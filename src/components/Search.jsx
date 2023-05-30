@@ -3,13 +3,14 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 
 import { filterText } from "../utils/fiterText"
+import SearchFiled from "./SearchField"
 
-const Search = ({ games }) => {
+const Search = ({ games, label }) => {
     const [text, setText] = useState("")
     const [searchText, setSearchText] = useState([])
     const [filtredGames, setFiltredGames] = useState()
     const count = 5
-    const handleTextChange = (e) => {
+    const handleChange = (e) => {
         const { value } = e.target
         setText(value)
     }
@@ -27,11 +28,11 @@ const Search = ({ games }) => {
 
     return (
         <div className="search">
-            <input
+            <SearchFiled
+                label={label}
+                onChange={handleChange}
                 value={text}
-                onChange={handleTextChange}
-                type="text"
-                placeholder="Search..."
+                name={"search"}
             />
             {searchText && (
                 <div className="searchList">
@@ -49,8 +50,7 @@ const Search = ({ games }) => {
                         to={{
                             pathname: "/shop/filtredGames",
                             state: {
-                                filtredGamesArr: filtredGames,
-                                gamesArr: games
+                                filtredGamesArr: filtredGames
                             }
                         }}
                         className="searchListItem"
@@ -63,7 +63,8 @@ const Search = ({ games }) => {
     )
 }
 Search.propTypes = {
-    games: PropTypes.array
+    games: PropTypes.array,
+    label: PropTypes.string
 }
 
 export default Search

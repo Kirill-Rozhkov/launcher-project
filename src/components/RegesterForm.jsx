@@ -4,6 +4,7 @@ import * as yup from "yup"
 import TextField from "../components/TextField"
 
 import "../css/sign.css"
+import CheckboxField from "./CheckboxField"
 
 const RegisterForm = () => {
     const [data, setData] = useState({ email: "", password: "" })
@@ -73,6 +74,7 @@ const RegisterForm = () => {
                 text={data.password}
                 error={errors.password}
             />
+            {/* <CheckboxField label={`Accept user agreement`} /> */}
             <div>
                 <button type="submit" disabled={!isValid}>
                     <h3>Sumbit</h3>

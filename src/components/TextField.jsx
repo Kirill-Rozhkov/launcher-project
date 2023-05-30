@@ -1,8 +1,10 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
+import SearchFiled from "./SearchField"
 
 const TextField = ({ name, label, type, text, onChange, error }) => {
     const [inputType, setInputType] = useState(type)
+    console.log(inputType)
     const showText = () => {
         if (inputType === "password") {
             setInputType("text")
@@ -11,14 +13,12 @@ const TextField = ({ name, label, type, text, onChange, error }) => {
         }
     }
     return (
-        <div className={type}>
-            <label htmlFor={type}>{label}</label>
-            <input
-                name={name}
-                type={inputType}
-                id={type}
-                value={text}
+        <div>
+            <SearchFiled
+                label={label}
                 onChange={onChange}
+                value={text}
+                name={name}
             />
             {type === "password" &&
                 (inputType === "password" ? (

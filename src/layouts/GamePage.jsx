@@ -16,7 +16,7 @@ const GamePage = ({ games }) => {
     const title = useParams()
     const { gameTitle } = title
     useEffect(() => {
-        api.games.getByTitle(gameTitle).then((data) => {
+        api.games.getByTitle(games, gameTitle).then((data) => {
             setGame(data)
         })
     }, [])

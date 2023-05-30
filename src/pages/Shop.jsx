@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 
 import LayoutWithHeader from "../components/LayoutWithHeader"
@@ -9,12 +9,13 @@ import "../css/shop.css"
 
 const Shop = ({ games, handlePaginatePage, allGames }) => {
     return (
-        <LayoutWithHeader games={games}>
+        <LayoutWithHeader games={allGames}>
             {games.length > 0 ? (
                 <GameList
                     games={games}
                     handlePaginatePage={handlePaginatePage}
                     allGames={allGames}
+                    pageName={"shop"}
                 />
             ) : (
                 <h1>Loading...</h1>

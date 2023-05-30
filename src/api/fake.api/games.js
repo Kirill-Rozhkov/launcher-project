@@ -201,7 +201,7 @@ const games = [
         id: 9,
         title: "Resident Evil Village",
         characteristics: {
-            genre: ["Survival horror"],
+            genres: ["Survival horror"],
             publisher: "Capcom",
             developer: "Capcom",
             releaseDate: "2021-05-07"
@@ -227,7 +227,7 @@ const games = [
         id: 10,
         title: "Returnal",
         characteristics: {
-            genre: ["Action", "Roguelike"],
+            genres: ["Action", "Roguelike"],
             publisher: "Sony Interactive Entertainment",
             developer: "Housemarque",
             releaseDate: "2021-04-30"
@@ -251,7 +251,7 @@ const games = [
         id: 11,
         title: "Back 4 Blood",
         characteristics: {
-            genre: ["First-person shooter"],
+            genres: ["First-person shooter"],
             publisher: "Warner Bros. Interactive Entertainment",
             developer: "Turtle Rock Studios",
             releaseDate: "2021-10-12"
@@ -276,7 +276,7 @@ const games = [
         id: 12,
         title: "Kena: Bridge of Spirits",
         characteristics: {
-            genre: ["Action", "Adventure"],
+            genres: ["Action", "Adventure"],
             publisher: "Ember Lab",
             developer: "Ember Lab",
             releaseDate: "2021-09-21"
@@ -530,38 +530,21 @@ const games = [
     }
 ]
 
-if (!localStorage.getItem("games")) {
-    localStorage.setItem("games", JSON.stringify(games))
-}
-
 const fetchAll = () =>
     new Promise((resolve) => {
         window.setTimeout(function () {
-            resolve(JSON.parse(localStorage.getItem("games")))
+            resolve(games)
         }, 2000)
     })
-const getByTitle = (title) =>
+
+const getByTitle = (games, title) =>
     new Promise((resolve) => {
         window.setTimeout(function () {
-            const games = JSON.parse(localStorage.getItem("games"))
             resolve(games.find((game) => game.title === title))
         }, 1000)
     })
-const update = (id, data) =>
-    new Promise((resolve) => {
-        console.log(data)
-        console.log(id)
-        const games = JSON.parse(localStorage.getItem("games"))
-        const gameIndex = games.findIndex((g) => g.id === id)
-        console.log({ ...games[gameIndex], ...data })
-        games[gameIndex] = { ...data, ...games[gameIndex] }
-        console.log(games[gameIndex])
-        localStorage.setItem("games", JSON.stringify(games))
-        // console.log(games)
-        resolve(games[gameIndex])
-    })
+
 export default {
     fetchAll,
-    getByTitle,
-    update
+    getByTitle
 }

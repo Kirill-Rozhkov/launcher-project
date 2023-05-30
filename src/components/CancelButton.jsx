@@ -1,20 +1,24 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 const CancelButton = ({ path }) => {
+    const history = useHistory()
+    const changeHistory = () => {
+        history.push(path)
+    }
     return (
         <div
+            role="button"
+            onClick={changeHistory}
             className="cancelButton"
             style={{
-                marginTop: "5",
+                marginTop: "25px",
                 width: "6%",
                 fontSize: "12px"
             }}
         >
-            <Link to={path}>
-                <h1>Cancel</h1>
-            </Link>
+            <h1>Cancel</h1>
         </div>
     )
 }
